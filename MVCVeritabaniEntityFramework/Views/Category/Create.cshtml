@@ -1,0 +1,46 @@
+﻿@model MVCVeritabaniEntityFramework.Models.Categories
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h3">Kategori Ekle</h1>
+</div>
+<div class="col-12">
+    <div class="card">
+        <div class="card-header">
+            <h5>Kategori Bilgileri</h5>
+        </div>
+        <div class="card-body">
+            @using (Html.BeginForm())
+            {
+                <div class="form-group">
+                    @*<label class="col-md-2">Isim :</label>
+
+                        <div class="col-md-10">
+                            <input type="text" name="CategoryName" class="form-control" />
+
+                        </div>*@
+                    @Html.LabelFor(model=> model.CategoryName, htmlAttributes: new { @class="form-label"})
+                    @Html.EditorFor(model => model.CategoryName, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                <div class="form-group">
+                    <label class="form-label">
+                        Açıklama
+                    </label>
+                    @*<input type="text" name="Description" class="form-control" />*@
+                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+
+                <div>
+                    <input type="submit" class="btn btn-primary mt-3" value="Kategori Ekle" />
+                </div>
+            }
+        </div>
+        <div class="card-footer">
+            <a href="@Url.Action("Index", "Category")" class="btn btn-outline-secondary btn-sm">Kategori Listesine Dön</a>
+        </div>
+    </div>
+</div>
+

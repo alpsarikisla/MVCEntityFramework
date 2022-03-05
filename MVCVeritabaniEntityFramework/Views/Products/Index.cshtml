@@ -1,0 +1,99 @@
+﻿@model IEnumerable<MVCVeritabaniEntityFramework.Models.Products>
+@using MVCVeritabaniEntityFramework.Models
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Ürünler</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <a href="@Url.Action("Create", "Products")" class="btn btn-sm btn-outline-success">
+            Ürün Ekle
+        </a>
+    </div>
+</div>
+<div class="col-12">
+    <div class="card">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ProductName)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.UnitPrice)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UnitsInStock)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.ReorderLevel)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Discontinued)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Categories.CategoryName)
+                    </th>
+
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ProductName)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UnitPrice)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UnitsInStock)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ReorderLevel)
+                            </td>
+                            <td>
+                                @if (!item.Discontinued)
+                                {
+                                    <label>Satışta</label>
+                                }
+                                else
+                                {
+                                    <label>Satışta Değil</label>
+                                }
+
+                            </td>
+                            <td>
+                                @item.Categories.CategoryName
+                            </td>
+
+                            <td>
+                                <a href="@Url.Action("Edit", "Products", new { id = item.ProductID })" class="btn btn-primary btn-sm">Düzenle</a>
+                                <a href="@Url.Action("Details", "Products", new { id = item.ProductID })" class="btn btn-warning btn-sm">Detay</a>
+                                <a href="@Url.Action("Delete", "Products", new { id = item.ProductID })" class="btn btn-danger btn-sm">Sil</a>
+                            </td>
+                        </tr>
+                    } }
+
+            </tbody>
+
+
+
+        </table>
+        <div class="card-footer">
+            <span class="text-secondary">@Model.Count() adet Ürün bulunmaktadır</span>
+        </div>
+    </div>
+</div>
+
+

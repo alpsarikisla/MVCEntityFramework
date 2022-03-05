@@ -1,0 +1,47 @@
+﻿@model IEnumerable<MVCVeritabaniEntityFramework.Models.Categories>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Kategoriler</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+            <a href="@Url.Action("Create","Category")" class="btn btn-sm btn-outline-success">
+                Kategori Ekle
+            </a>
+        </div>
+</div>
+<div class="col-12">
+    <div class="card">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>Isim</td>
+                    <td>Aciklama</td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.CategoryID</td>
+                        <td>@item.CategoryName</td>
+                        <td>@item.Description</td>
+                        <td>
+                            <a href="@Url.Action("Edit","Category", new { id = item.CategoryID})" class="btn btn-primary btn-sm">Düzenle</a>
+                            <a href="@Url.Action("Delete","Category", new { id = item.CategoryID})" class="btn btn-danger btn-sm">Sil</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div class="card-footer">
+            <span class="text-secondary">@Model.Count() adet kategori bulunmaktadır</span>
+        </div>
+    </div>
+</div>
+
+
